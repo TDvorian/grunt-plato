@@ -16,23 +16,23 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('plato', 'Generate static analysis charts with plato', function() {
 
     var options = this.options({
-      jshint: {},
-      jshintrc: '',
+      eslint: {},
+      eslintrc: '',
       complexity: {
         newmi : true
       }
     });
 
-    if (options.jshintrc) {
-      options.jshint = grunt.file.readJSON(grunt.config.process(options.jshintrc));
+    if (options.eslintrc) {
+      options.eslint = grunt.file.readJSON(grunt.config.process(options.eslintrc));
     }
 
-    if (options.jshint && !options.jshint.options) {
-      options.jshint = {
-        options : options.jshint,
-        globals : options.jshint.globals || {}
+    if (options.eslint && !options.eslint.options) {
+      options.eslint = {
+        options : options.eslint,
+        globals : options.eslint.globals || {}
       };
-      delete options.jshint.options.globals;
+      delete options.eslint.options.globals;
     }
 
     if (options.excludeFromFile) {
