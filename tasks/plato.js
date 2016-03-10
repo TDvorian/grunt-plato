@@ -27,12 +27,16 @@ module.exports = function(grunt) {
       options.eslint = grunt.file.readJSON(grunt.config.process(options.eslintrc));
     }
 
-    if (options.eslint && !options.eslint.options) {
-      options.eslint = {
-        options : options.eslint,
-        globals : options.eslint.globals || {}
+    if (options.jshintrc) {
+      options.jshint = grunt.file.readJSON(grunt.config.process(options.jshintrc));
+    }
+
+    if (options.jshint && !options.jshint.options) {
+      options.jshint = {
+        options : options.jshint,
+        globals : options.jshint.globals || {}
       };
-      delete options.eslint.options.globals;
+      delete options.jshint.options.globals;
     }
 
     if (options.excludeFromFile) {
